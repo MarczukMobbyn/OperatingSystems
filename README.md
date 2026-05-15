@@ -1,43 +1,43 @@
 # 💻 Operating Systems - Monorepo
 
-Zbiór projektów symulacyjnych realizowanych w ramach przedmiotu **Systemy Operacyjne**. Projekt ma strukturę monorepo, w którym każdy moduł (lista) odpowiada za inne kluczowe zagadnienie z zakresu algorytmów i mechanizmów systemowych.
+A collection of simulation projects developed as part of the **Operating Systems** coursework. The project is structured as a monorepo, where each module (assignment list) covers a key topic in system algorithms and mechanisms.
 
-## 📂 Przegląd Modułów
+## 📂 Module Overview
 
-### Lista 1: Planowanie czasu procesora (CPU Scheduling)
-Symulator porównujący wydajność algorytmów przydziału czasu procesora dla procesów o zróżnicowanym czasie nadejścia i wymaganiach.
-* **Algorytmy:** FCFS, SJF (bez wywłaszczania), SRTF (SJF z wywłaszczaniem), Round Robin (RR - z kwantem czasu i kosztem przełączenia kontekstu).
-* **Metryki i funkcje:** Obliczanie średniego czasu oczekiwania (AWT) i przetwarzania (ATT), zliczanie przełączeń kontekstu, wykrywanie potencjalnego zagłodzenia procesów (starvation) oraz tekstowa wizualizacja w postaci wykresu Gantta.
+### Lista 1: CPU Scheduling
+A simulator comparing the performance of CPU scheduling algorithms for processes with diverse arrival times and burst requirements.
+* **Algorithms:** FCFS, SJF (non-preemptive), SRTF (preemptive SJF), and Round Robin (RR - with time quantum and context switch cost).
+* **Metrics and features:** Calculation of Average Waiting Time (AWT) and Average Turnaround Time (ATT), context switch counting, potential process starvation detection, and textual Gantt chart visualization.
 
-### Lista 2: Planowanie dostępu do dysku (Disk Scheduling)
-Symulator analizujący wydajność algorytmów pozycjonowania głowicy dysku twardego w celu minimalizacji seek time.
-* **Algorytmy:** FCFS, SSTF, SCAN (algorytm windy), C-SCAN (Circular SCAN).
-* **Obsługa Real-Time:** EDF (Earliest Deadline First) oraz FD-SCAN (Feasible Deadline SCAN) – zaawansowana odmiana odrzucająca żądania niemożliwe do spełnienia w czasie i obsługująca zwykłe żądania "po drodze".
-* **Metryki:** Całkowite przemieszczenie głowicy (total head movement) wyrażone w cylindrach.
+### Lista 2: Disk Scheduling
+A simulator analyzing the efficiency of hard drive head positioning algorithms to minimize seek time.
+* **Algorithms:** FCFS, SSTF, SCAN (elevator algorithm), and C-SCAN (Circular SCAN).
+* **Real-Time Support:** EDF (Earliest Deadline First) and FD-SCAN (Feasible Deadline SCAN) – an advanced variant that rejects requests impossible to fulfill in time while handling regular requests "on the way".
+* **Metrics:** Total head movement expressed in cylinders.
 
-### Lista 3: Zastępowanie stron (Page Replacement)
-Symulator wirtualnej pamięci badający zachowanie systemu przy ograniczonej puli ramek RAM.
-* **Algorytmy:** FIFO, LRU (Least Recently Used), OPT (teoretyczny algorytm optymalny jako benchmark), Random (losowy) oraz Second Chance (Druga Szansa z wykorzystaniem bitu odniesienia).
-* **Metryki i funkcje:** Zliczanie błędów braku strony (Page Faults), uśrednianie wyników dla algorytmu losowego, generator ciągów odwołań uwzględniający lokalność fazową programu.
+### Lista 3: Page Replacement
+A virtual memory simulator examining system behavior under a limited pool of RAM page frames.
+* **Algorithms:** FIFO, LRU (Least Recently Used), OPT (theoretical optimal algorithm used as a benchmark), Random, and Second Chance (using a reference bit).
+* **Metrics and features:** Page Fault counting, result averaging for the random algorithm, and a reference string generator accounting for program phase locality.
 
-### Lista 4: Przydział ramek (Frame Allocation)
-Środowisko wieloprocesowe symulujące podział dostępnej pamięci fizycznej (ramek) pomiędzy współbieżnie działające programy.
-* **Algorytmy:** Statyczne (Equal, Proportional) oraz Dynamiczne (PFF - Page Fault Frequency, Working Set Model).
-* **Metryki i funkcje:** Każdy proces posiada niezależną instancję LRU. System śledzi i zlicza zdarzenia szamotania (thrashing) oraz realizuje dynamiczne usypianie (wstrzymywanie) zbyt zasobożernych procesów i ich automatyczne wybudzanie.
+### Lista 4: Frame Allocation
+A multi-process environment simulating the distribution of available physical memory (frames) among concurrently running programs.
+* **Algorithms:** Static (Equal, Proportional) and Dynamic (PFF - Page Fault Frequency, Working Set Model).
+* **Metrics and features:** Each process maintains an independent LRU instance. The system tracks and counts thrashing events, executes dynamic suspension (swapping out) of overly resource-heavy processes, and automatically resumes them.
 
-### Lista 5: Równoważenie obciążenia (Load Balancing)
-Symulacja rozproszonych algorytmów migracji zadań i balansowania pracy w architekturze wieloprocesorowej.
-* **Strategie:**
-* 1. *Strategia 1:* Procesor losowo odpytuje do *z* sąsiadów i migruje zadanie, jeśli obciążenie celu nie przekroczy progu *p*.
-  2. *Strategia 2:* W przypadku przeciążenia powierzonego zadania, procesor szuka losowo wolnego węzła aż do skutku lub wyczerpania opcji.
-  3. *Strategia 3 (Work Stealing):* Aktywna kradzież zadań – niedociążone procesory (poniżej progu *r*) same odpytują jednostki przeciążone i przejmują ich zadania o największym loadzie.
-* **Metryki:** Łączna liczba zapytań (queries), liczba migracji oraz odchylenie standardowe obciążenia (wskaźnik zbalansowania systemu).
+### Lista 5: Load Balancing
+A simulation of distributed task migration and load balancing algorithms in a multiprocessor architecture.
+* **Strategies:**
+  1. *Strategy 1:* A processor randomly probes up to *z* neighbors and migrates the task if the target's load does not exceed threshold *p*.
+  2. *Strategy 2:* In case of an assigned task overloading the node, the processor randomly searches for a free node until successful or options are exhausted.
+  3. *Strategy 3 (Work Stealing):* Active task stealing – underloaded processors (below threshold *r*) independently query overloaded units and take over their heaviest tasks.
+* **Metrics:** Total number of queries, number of migrations, and the standard deviation of the load (system balance indicator).
 
 ---
 
-## Jak uruchomić?
-Każdy folder (`SOLaby1` do `SOLaby5`) stanowi niezależny moduł ze zdefiniowanymi zestawami testowymi (przypadki brzegowe oraz losowe generatory).
+## 🏃 How to run?
+Each folder (`SOLaby1` do `SOLaby5`) represents an independent module with predefined test sets (edge cases and random generators).
 
-1. Otwórz projekt w IntelliJ IDEA.
-2. Kliknij prawym przyciskiem myszy na folder `src` w wybranym module i wybierz **Mark Directory as -> Sources Root**.
-3. Uruchom klasę startową (np. `Main.java` lub `TestRunner.java`) za pomocą zielonej strzałki *Run*.
+1. Open the project in IntelliJ IDEA.
+2. Right-click the `src` folder in the selected module and choose **Mark Directory as -> Sources Root**.
+3. Run the entry class (e.g., `Main.java` or `TestRunner.java`) using the green *Run* arrow.
